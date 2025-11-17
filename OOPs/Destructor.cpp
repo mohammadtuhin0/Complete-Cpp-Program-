@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+public:
+    string name;
+    double* cgpaPtr;
+
+    Student(string name, double cgpa) {
+        this-> name = name;
+        cgpaPtr = new double;
+        *cgpaPtr = cgpa;
+    }
+
+    Student(Student &obj) {
+        this-> name = obj.name;
+        cgpaPtr = new double;
+        *cgpaPtr = *obj.cgpaPtr;
+    }
+
+    // destructor
+    ~Student() {
+        cout<<"hi, i delete everthing\n";
+        delete cgpaPtr;
+    }
+    
+    void getInfo() {
+        cout<< "Name : "<< name <<endl;
+        cout<< "CGPA : "<< *cgpaPtr <<endl;
+    }
+};
+
+int main() {
+    Student s1("rahul kumar", 8.9);
+    s1.getInfo();
+    
+    return 0;
+}
